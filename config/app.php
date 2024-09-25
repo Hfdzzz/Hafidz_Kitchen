@@ -1,5 +1,7 @@
 <?php
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 return [
 
     /*
@@ -27,6 +29,8 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+
+
 
     /*
     |--------------------------------------------------------------------------

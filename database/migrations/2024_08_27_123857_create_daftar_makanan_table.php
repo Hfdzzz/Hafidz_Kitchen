@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_makanan');
             $table->string('deskripsi_singkat')->default('0');
             $table->string('deskripsi')->default('0');
-            $table->string('resep')->default('0');
+            $table->string('daftar_harga')->default('0');
             $table->string('file_path')->default('0');
 
             $table->timestamps();

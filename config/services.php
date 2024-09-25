@@ -18,6 +18,10 @@ return [
         'client_id' => env('IMGUR_CLIENT_ID'),
     ],
 
+    'cloudinary' => [
+        'cloud_url' => env('CLOUDINARY_URL'),
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

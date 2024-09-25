@@ -3,56 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegant Login & Register</title>
+    <title>Register Account</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .auth-wrapper {
-            background: #fff;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-        .auth-wrapper h3 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-        .auth-wrapper .form-control {
-            border-radius: 50px;
-            padding-left: 2.5rem;
-        }
-        .auth-wrapper .form-control-feedback {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-        }
-        .auth-wrapper .btn-custom {
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 50px;
-            padding: 0.6rem 1.5rem;
-            width: 100%;
-        }
-        .auth-wrapper .btn-custom:hover {
-            background-color: #0056b3;
-        }
-        .auth-wrapper .switch-link {
-            text-align: center;
-            margin-top: 1rem;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -67,11 +24,21 @@
         {{ session('error') }}
     </div>
     @endif
+    @if (session('errors'))
+
+    <div class="alert alert-danger">
+        {{ session('errors') }}
+    </div>
+    @endif
         <form action="{{ route('registerUserBerhasil') }}" method="post">
             @csrf
             <div class="mb-3 position-relative">
                 <span class="form-control-feedback"><i class="fas fa-user"></i></span>
                 <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+            <div class="mb-3 position-relative">
+                <span class="form-control-feedback"><i class="fas fa-user"></i></span>
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
             </div>
             <div class="mb-3 position-relative">
                 <span class="form-control-feedback"><i class="fas fa-lock"></i></span>
@@ -90,4 +57,53 @@
 
     
 </body>
+<style>
+    body {
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .auth-wrapper {
+        background: #fff;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+    .auth-wrapper h3 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+    .auth-wrapper .form-control {
+        border-radius: 50px;
+        padding-left: 2.5rem;
+    }
+    .auth-wrapper .form-control-feedback {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #aaa;
+    }
+    .auth-wrapper .btn-custom {
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 50px;
+        padding: 0.6rem 1.5rem;
+        width: 100%;
+    }
+    .auth-wrapper .btn-custom:hover {
+        background-color: #0056b3;
+    }
+    .auth-wrapper .switch-link {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    
+</style>
 </html>

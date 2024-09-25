@@ -8,6 +8,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -28,10 +32,20 @@
           </div>
         </form>
   
+        @if (auth()->check())
+            
+        <div class="no-underline d-flex" style="text-decoration: none;">
+          <a href="{{ route('informationUser') }}"><h4 class="no-underline" style="color: white;">{{ Auth::user()->username; }}</h4></a>
+        </div>  
+        
+        @else
+
         <div class="d-flex">
           <a href="{{ route('register') }}"><button type="button" class="tombolDaftar btn btn-success me-2">Daftar</button></a>
           <a href="{{ route('login') }}"><button type="button" class="tombolLogin btn btn-primary">Login</button></a>
         </div>
+            
+        @endif
       </div>
     </div>
   </nav>
@@ -49,21 +63,12 @@
         </div>
     @endif
 
+    
+
     <div class="container mt-5">
         <div class="row">
-            <!-- Card  -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset('img/zzz.png') }}" class="thumbnail card-img-top" alt="Bomboloni">
-                    <div class="card-body">
-                        <h5 class="card-title">Bomboloni</h5>
-                        <p class="card-text">Lezat dan lembut, bomboloni kami adalah pilihan sempurna untuk pencuci mulut.</p>
-                        <a href="#" class="btn btn-primary">Order Now</a>
-                    </div>
-                </div>
-            </div>
-            
-           {{-- penutup card --}}
+           
+          
 
            @foreach ($registerMakanan as $item)
 
@@ -73,22 +78,37 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $item->nama_makanan }}</h5>
                     <p class="card-text">{{ $item->deskripsi_singkat }}</p>
-                    <a href="{{ url('/Information/'.$item->id) }}" class="btn btn-primary">Info</a>
+                    <a href="{{ route('menuMakanan', $item->id, $item->nama_makanan) }}" class="btn btn-primary">Info</a>
                 </div>
             </div>
         </div>
                
            @endforeach
 
+
             
         </div>
     </div>
 
+    @if (auth()->check() && auth()->user()->hasRole('admin'))
     <a href="{{ route('registMakanan') }}"><button class="floating-btn">
-     <i class="fas fa-plus"></i> <!-- Ikon dari Font Awesome (opsional) -->
+     <i class="fas fa-plus"></i> 
   </button></a>
+  @endif
 
   <style>
+
+    a{
+      text-decoration: none !important;
+    }
+
+    body{
+      /* font-style: italic; */
+    }
+    
+
+    
+    
     /* CSS untuk tombol mengapung */
     .floating-btn {
         position: fixed;

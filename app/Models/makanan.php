@@ -9,5 +9,5 @@ class makanan extends Model
 {
     use HasFactory;
     protected $table = 'daftar_makanan';
-    protected $fillable = ['nama_makanan', 'deskripsi_singkat', 'deskripsi', 'resep','file_path'];
+    protected $fillable = ['nama_makanan', 'deskripsi_singkat', 'deskripsi', 'daftar_harga','file_path'];
 }
